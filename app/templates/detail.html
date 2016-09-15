@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />
+    </head>
+    <body>
+        <div id="title">
+            <h4>{{user_name}}'s reading list - Book detail</h4>
+            <span><a href="/reading_list/logout">Logout</a></span>
+        </div>
+        <div id="edit_book">
+        {% if not book %}
+            No such book
+        {% else %}
+            {% include "book_detail_panel.html" %}
+        {% endif %}
+        </div>
+        <div id="book_info">
+            <h4>Info from Amazon</h4>
+            <img src="{{book_info.image_url}}" style="vertical-align: middle">
+            <a href="{{book_info.url}}" target="_blank">{{book.title}}</a>
+            {{book_info.price}} {{book_info.currency}}
+        </div>
+    </body>
+</html>

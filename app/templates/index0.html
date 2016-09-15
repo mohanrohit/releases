@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />
+    </head>
+    <body>
+        <div id="title">
+            <h4>{{user_name}}'s reading list</h4>
+            <span><a href="/reading_list/logout">Logout</a></span>
+        </div>
+        
+        <table id="book_list_table">
+            <tr class="header">
+                <td class="book_title"><a href="{{url_for('reading_list', sort='title')}}">Title</a></td>
+                <td class="book_author"><a href="{{url_for('reading_list', sort='author_first_name')}}">Author</a></td>
+                <td class="book_genre"><a href="{{url_for('reading_list', sort='genre')}}">Genre</a></td>
+                <td class="book_grade"><a href="{{url_for('reading_list', sort='grade')}}">Grade</a></td>
+            </tr>
+            {% for book in books: %}
+            <tr>
+                <td>{{book.title}}</td>
+                <td>{{book.author_first_name}} {{book.author_last_name}}</td>
+                <td>{{book.genre}}</td>
+                <td>{{book.grade}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div id="page_navigation">
+            {% if page_number > 1 %}
+            <a href="{{url_for("reading_list", page=first_page_number, sort=sort)}}">&lt;&lt; First page</a>
+            <a href="{{url_for("reading_list", page=previous_page_number, sort=sort)}}">&lt; Previous page</a>
+            {% endif %}
+            <span id="page_number">{{page_number}}</span>
+            {% if page_number < num_pages %}
+            <a href="{{url_for("reading_list", page=next_page_number, sort=sort)}}">Next page &gt;</a>
+            <a href="{{url_for("reading_list", page=last_page_number, sort=sort)}}">Last page &gt;&gt;</a>
+            {% endif %}
+            <!--
+            <p>
+            test: <a href={{url_for("reading_list", page=page_number, sort=sort)}}>click for page {{page_number}}</a>
+            </p>
+            -->
+        </div>
+        <!--
+        <div id="new_book">
+            <h4 class="caption">Add a book</h4>
+
+            <form id="new_book_form" method="post">
+                <table>
+                    <tr>
+                        <td><label for="title">Title:<label></td>
+                        <td><input type="text" name="title" size="40" value="{{title}}"></label>
+                    </tr>
+                    <tr>
+                        <td><label for="author">Author:<label></td>
+                        <td><input type="text" name="title" size="32" value="{{author}}"></label>
+                    </tr>
+                    <tr>
+                        <td><label for="genre">Genre:<label></td>
+                        <td><input type="text" name="genre" size="8" value="{{genre}}"></label>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        -->
+    </body>
+</html>

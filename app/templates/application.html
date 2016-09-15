@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+        <div id="application_info">
+        {% if application %}
+            {% if version %}
+            <h4>Release notes for {{application["name"]}} version {{version}}</h4>
+            {% else %}
+            <h4>Release notes for {{application["name"]}}, new version</h4>
+            {% endif %}
+        {% else %}
+            <h4>Release notes for new application</h4>
+        {% endif %}
+        </div>
+    </body>
+</html>

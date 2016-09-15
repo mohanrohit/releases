@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+		{% if errors %}
+		<div id="errors">
+            {% for error in errors %}
+            <p>{{error}}</p>
+            {% endfor %}
+        {% endif %}
+		</div>
+        <div id="general_info">
+            <form name="general_info_form" method="POST">
+                <p>
+                    Release type:
+                    <select name="release_type">
+                        <option value="major">Major</option>
+                        <option value="minor">Minor</option>
+                        <option value="patch">Patch</option>
+                    </select>
+                    <p>Number of enhancements: <input name="num_enhancements" value="{{application_version['num_enhancements']}}"></input></p>
+                    <p>Number of bugfixes: <input name="num_bugfixes" value="{{application_version['num_bugfixes']}}"></input></p>
+                </p>
+                <p><input type="submit" value="Update"></input></p>
+            </form>
+        </div>
+    </body>
+</html>

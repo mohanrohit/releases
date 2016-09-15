@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+        <div id="application_list">
+            {% if applications|length == 0 %}
+            <h4>No applications are defined.</h4>
+            {% else %}
+            <p>There are {{applications|length}} applications:</p>
+            <ul>
+            {% for application in applications %}
+              <li><a href="{{url_for('ApplicationController:get', id=application.id)}}">{{application.name}}</a></li>
+            {% endfor %}
+            {% endif %}
+            </ul>
+            <!--<a href="{{url_for('create_application')}}">Create new application</a>-->
+            <a href="#">Create new application</a>
+        </div>
+    </body>
+</html>

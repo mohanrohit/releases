@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+		{% if errors %}
+		<div id="errors">
+            {% for error in errors %}
+            <p>{{error}}</p>
+            {% endfor %}
+		</div>
+		{% endif %}
+        {% if requested_version %}
+        <p>{{applications[selected_application_id]["name"]}} version {{requested_version}} does not exist. You can add it if you like.</p>
+        {% endif %}
+        <div id="application_info">
+            <form id="new_version_form" method="POST">
+                <p>Application name:
+                    <select name="application_id">
+                        {% for application_id in applications %}
+                            {%if selected_application_id == application_id %}
+                            <option value="{{application_id}}" selected>{{applications[application_id]["name"]}}</option>
+                            {% else %}
+                            <option value="{{application_id}}">{{applications[application_id]["name"]}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </p>
+                <p>Application version: <input type="text" name="application_version" value="{{requested_version}}"></input></p>
+                <p><input type="submit" value="Create version"></input></p>
+            </form>
+            <!--<h4>Adding new application</h4>-->
+        </div>
+        {% if message %}
+        <p>{{message}}</p>
+        {% endif %}
+    </body>
+</html>

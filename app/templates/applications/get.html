@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+        <div id="application">
+            {% if application == None %}
+            <p>No application with id {{id}} is defined.</p>
+            {% else %}
+            <p>This is the page for the <strong>{{application.name}}</strong> application.</p>
+            {% endif %}
+        </div>
+    </body>
+</html>
