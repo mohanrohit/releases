@@ -29,10 +29,14 @@ class ApplicationController(BaseController):
         new_application_form = NewApplicationForm()
 
         if request.method == "GET":
-            return render_template("applications/new.html", application_form=new_application_form)
+            return render_template("applications/new.html", form=new_application_form)
 
         if new_application_form.validate_on_submit():
             application = Application(name=self.params["name"])
+
+            version = Version(application=application, **Version.parse(self.params["version"]))
+            version.save()
+
             application.save()
         else:
             print "validation failed"

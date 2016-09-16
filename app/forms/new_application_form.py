@@ -7,3 +7,4 @@ from wtforms.validators import DataRequired
 
 class NewApplicationForm(Form):
     name = StringField("name", validators=[DataRequired()])
+    version = StringField("version", validators=[DataRequired()])

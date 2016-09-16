@@ -7,6 +7,7 @@ class Application(Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, index=True)
     name = db.Column(db.String, nullable=False, unique=True)
+    versions = db.relationship("Version", backref="application", lazy="dynamic")
 
     def __init__(self, **kwargs):
         Model.__init__(self, **kwargs)

@@ -6,11 +6,15 @@
     <body>
         <div id="new-application">
             <form id="new-application-form" method="POST">
-                {{application_form.hidden_tag()}}
-                <p>New application name:</p>
-                <p>{{application_form.name}}</p>
-                {% if application_form.name.error %}
-                <p>{{application_form.name.error}}</p>
+                {{form.hidden_tag()}}
+                <p>Application name: {{form.name}}</p>
+                <p>Application version: {{form.version}}</p>
+                <p><input type="submit" value="Submit"></input></p>
+                {% if form.name.error %}
+                <p>{{form.name.error}}</p>
+                {% endif %}
+                {% if form.version.error %}
+                <p>{{form.version.error}}</p>
                 {% endif %}
             </form>
         </div>
