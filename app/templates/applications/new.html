@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+        <div id="new-application">
+            <form id="new-application-form" method="POST">
+                {{application_form.hidden_tag()}}
+                <p>New application name:</p>
+                <p>{{application_form.name}}</p>
+                {% if application_form.name.error %}
+                <p>{{application_form.name.error}}</p>
+                {% endif %}
+            </form>
+        </div>
+    </body>
+</html>

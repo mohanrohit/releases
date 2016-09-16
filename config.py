@@ -5,7 +5,7 @@ base_directory = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
   DEBUG = False
   TESTING = False
-  CSRF_ENABLED = False
+  WTF_CSRF_ENABLED = True
   SECRET_KEY = "some-secret-key"
 
   # for SQLAlchemy

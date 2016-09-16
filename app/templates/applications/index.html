@@ -4,7 +4,7 @@
         <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
     </head>
     <body>
-        <div id="application_list">
+        <div id="application-list">
             {% if applications|length == 0 %}
             <h4>No applications are defined.</h4>
             {% else %}
@@ -15,8 +15,7 @@
             {% endfor %}
             {% endif %}
             </ul>
-            <!--<a href="{{url_for('create_application')}}">Create new application</a>-->
-            <a href="#">Create new application</a>
+            <a href="{{url_for('ApplicationController:new')}}">Create new application</a>
         </div>
     </body>
 </html>

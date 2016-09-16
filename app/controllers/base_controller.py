@@ -13,6 +13,7 @@ class BaseController(FlaskView):
     self.params = {}
 
   def before_request(self, name, **kwargs):
-    self.params.update(request.values)
+    for key in request.values:
+        self.params[key] = request.values[key]
 
     print self.params

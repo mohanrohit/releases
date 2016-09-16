@@ -1,8 +1,12 @@
 ﻿# ApplicationController
 
 from flask import render_template
+from flask import url_for
+from flask import redirect
 
 from base_controller import *
+
+from app.forms import NewApplicationForm
 
 class ApplicationController(BaseController):
     def __init__(self):
@@ -20,13 +24,18 @@ class ApplicationController(BaseController):
 
         return render_template("applications/get.html", id=id, application=application)
 
-    @route("/applications", methods=["POST"])
-    def post(self):
-        if not "name" in self.params:
-            return jsonify(error="Title is required."), 400
+    @route("/applications/new", methods=["GET", "POST"])
+    def new(self):
+        new_application_form = NewApplicationForm()
 
-        application = Application(title=self.params["title"])
-        print "created new application: %s" % application
-        application.save()
+        if request.method == "GET":
+            return render_template("applications/new.html", application_form=new_application_form)
 
-        return jsonify(**self.params)
+        if new_application_form.validate_on_submit():
+            application = Application(name=self.params["name"])
+            application.save()
+        else:
+            print "validation failed"
+            print new_application_form.errors
+
+        return redirect(url_for("ApplicationController:index"))
