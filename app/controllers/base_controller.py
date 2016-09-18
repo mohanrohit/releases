@@ -15,5 +15,3 @@ class BaseController(FlaskView):
   def before_request(self, name, **kwargs):
     for key in request.values:
         self.params[key] = request.values[key]
-
-    print self.params
