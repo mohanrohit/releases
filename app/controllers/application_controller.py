@@ -26,20 +26,12 @@ class ApplicationController(BaseController):
 
     @route("/applications/new", methods=["GET", "POST"])
     def new(self):
-        new_application_form = NewApplicationForm()
-
-        if request.method == "GET":
-            return render_template("applications/new.html", form=new_application_form)
-
+        new_application_form = NewApplicationForm(request.values)
+        
         if new_application_form.validate_on_submit():
             application = Application(name=self.params["name"])
-
-            version = Version(application=application, **Version.parse(self.params["version"]))
-            version.save()
-
             application.save()
-        else:
-            print "validation failed"
-            print new_application_form.errors
 
-        return redirect(url_for("ApplicationController:index"))
+            return redirect(url_for("ApplicationController:get", id=application.id))
+
+        return render_template("applications/new.html", form=new_application_form)

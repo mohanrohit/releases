@@ -26,15 +26,17 @@ class Version(Model):
     def parse(version_string):
         """parses version string that must be in the form major.minor.patch.build"""
 
-        match = re.search(r"(\d+)\.(\d+)\.(\d+)?\.(\d+)?", version_string)
+        match = re.search(r"(\d+)\.(\d+)(?:\.(\d+))?(?:\.(\d+))?", version_string)
         if match:
-            captures = match.group(0)
+            captures = match.groups()
 
-            return {
+            x= {
                 "major": int(captures[0]),
                 "minor": int(captures[1]),
                 "patch": int(captures[2]) if captures[2] else 0,
                 "build": int(captures[3]) if captures[3] else 0
             }
+            print x
+            return x
 
         return {}
