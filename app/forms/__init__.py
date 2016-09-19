@@ -4,3 +4,4 @@
 # and remove this file
 
 from new_application_form import NewApplicationForm
+from undefined_application_form import UndefinedApplicationForm

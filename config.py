@@ -12,6 +12,7 @@ class Config(object):
   SQLALCHEMY_DATABASE_URI = "sqlite:///" + base_directory + "/db/release_plan.db"
   SQLALCHEMY_TRACK_MODIFICATIONS = False
   SQLALCHEMY_MIGRATE_REPO = base_directory + "/db/migrations"
+  SQLALCHEMY_ECHO = True # print SQL statements for debugging
 
 class ProductionConfig(Config):
   DEBUG = False

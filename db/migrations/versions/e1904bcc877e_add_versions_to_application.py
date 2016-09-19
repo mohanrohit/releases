@@ -1,4 +1,4 @@
-"""add versions to application
+"""adding versions to applications
 
 Revision ID: e1904bcc877e
 Revises: cfe73e8fa678
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('minor', sa.Integer(), nullable=False),
     sa.Column('patch', sa.Integer(), nullable=False),
     sa.Column('build', sa.Integer(), nullable=False),
-    sa.Column('application_id', sa.Integer(), nullable=True),
+    sa.Column('application_id', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['application_id'], ['applications.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

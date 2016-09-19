@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link type="text/css" rel="stylesheet" href="/reading_list/stylesheets/reading_list.css" />-->
+    </head>
+    <body>
+        <div id="application">
+            <p>Application <strong>{{name}}</strong> is not defined. Go back to the <a href="{{url_for('ApplicationController:index')}}">list of all applications.</a>
+            or .</p>
+            <p>Are you trying to create the application <strong>{{name}}</strong>?</p>
+            <form action="{{url_for('ApplicationController:new')}}", method="POST">
+                <input type="hidden", name="name" value="{{name}}"></input>
+                <input type="submit", value="Yes"></input>
+            </form>
+            <form action="/applications">
+                <input type="submit", value="No"></input>
+            </form>
+        </div>
+    </body>
+</html>

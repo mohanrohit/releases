@@ -14,7 +14,7 @@ class Version(Model):
     patch = db.Column(db.Integer, nullable=False, default=0)
     build = db.Column(db.Integer, nullable=False, default=0)
 
-    application_id = db.Column(db.Integer, db.ForeignKey("applications.id"))
+    application_id = db.Column(db.String, db.ForeignKey("applications.id"))
 
     def __init__(self, **kwargs):
         Model.__init__(self, **kwargs)
@@ -30,13 +30,11 @@ class Version(Model):
         if match:
             captures = match.groups()
 
-            x= {
+            return {
                 "major": int(captures[0]),
                 "minor": int(captures[1]),
                 "patch": int(captures[2]) if captures[2] else 0,
                 "build": int(captures[3]) if captures[3] else 0
             }
-            print x
-            return x
 
         return {}
