@@ -13,6 +13,10 @@ class Application(Model):
     created_on = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
     versions = db.relationship("Version", backref="application", lazy="dynamic")
 
+    @staticmethod
+    def get_by_slug(slug):
+        return Application.query.filter(Application.slug == slug).first()
+
     def __init__(self, **kwargs):
         Model.__init__(self, **kwargs)
 

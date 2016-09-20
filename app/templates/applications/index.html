@@ -11,7 +11,7 @@
             <p>There are {{applications|length}} applications:</p>
             <ul>
             {% for application in applications %}
-              <li><a href="{{url_for('ApplicationController:get', id=application.id)}}">{{application.name}}</a></li>
+              <li><a href="{{url_for('ApplicationController:get', slug=application.slug)}}">{{application.name}}</a></li>
             {% endfor %}
             {% endif %}
             </ul>

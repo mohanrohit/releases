@@ -8,6 +8,7 @@ class BaseController(FlaskView):
   __abstract__ = True
 
   route_base = "/"
+  trailing_slash = False
 
   def __init__(self):
     self.params = {}
