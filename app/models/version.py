@@ -1,26 +1,23 @@
 ﻿# version.py -- the Version model representing a version of an application
 
 import re
+import datetime
 
 from model import Model, db
 
 class Version(Model):
     __tablename__ = "versions"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, index=True)
-
-    major = db.Column(db.Integer, nullable=False, default=1)
-    minor = db.Column(db.Integer, nullable=False, default=0)
-    patch = db.Column(db.Integer, nullable=False, default=0)
-    build = db.Column(db.Integer, nullable=False, default=0)
-
-    application_id = db.Column(db.String, db.ForeignKey("applications.id"))
+    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False, autoincrement=True, index=True)
+    spec = db.Column(db.String, default="1.0", nullable=False)
+    created_on = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+    application_id = db.Column(db.String, db.ForeignKey("applications.id"), nullable=False)
 
     def __init__(self, **kwargs):
         Model.__init__(self, **kwargs)
 
     def __repr__(self):
-        return "%d.%d.%d.%d" % (self.major, self.minor, self.patch, self.build)
+        return spec
 
     @staticmethod
     def parse(version_string):
